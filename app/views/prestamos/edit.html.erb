@@ -1,0 +1,32 @@
+<h1>Edit Loan</h1>
+ 
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for @prestamo do |f| %>
+     
+      <p>
+        <%= f.label :nombre %><br>
+        <%= f.text_field :nombre, class: "form-control"%>
+      </p>
+     
+      <p>
+        <%= f.label :monto %><br>
+        <%= f.text_field :monto, class: "form-control" %>
+      </p>
+
+      <p>
+        <%= f.label :tipo %><br>
+        <%= f.collection_select :tipo, Prestamo::TIPO, :to_s, :to_s, :include_blank => true, class: "form-control" %>
+      </p>
+     
+      <p>
+        <%= f.submit "Create", class: "btn btn-primary"%>
+      </p>
+     
+    <% end %>
+     
+    <h2><%= link_to 'Go Back', prestamos_path %></h2>
+
+   </div>
+</div>

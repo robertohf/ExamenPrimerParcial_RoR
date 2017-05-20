@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-5 col-md-offset-3">
+
+  	<h2>Data</h2>
+  	<p>
+	  <strong>Id:</strong>
+	  <%= @prestamo.id %>
+	</p>
+	 
+	<p>
+	  <strong>Nombre:</strong>
+	  <%= @prestamo.nombre %>
+	</p>
+	 
+	<p>
+	  <strong>Monto:</strong>
+	  $<%= @prestamo.monto %>
+	</p>
+
+	<p>
+	  <strong>Tipo:</strong>
+	  <%= @prestamo.tipo %>
+	</p>
+
+	<p>
+	  <strong>Created:</strong>
+	  <%= @prestamo.created_at %>
+	</p>
+
+	<h2>Balance</h2>
+ 	<p><strong>You Owe:</strong>
+    	$<%= @prestamo.monto - @balance %>
+  	</p>
+
+	<h2>Payments</h2>
+		<%if @prestamo.pagos.first == nil%>
+			<h2>
+		   		AUN NO HA ABANODADO EL PRESTAMO
+		  	</h2>
+
+		<%else%>
+			<% @prestamo.pagos.each do |pago| %>
+			  	<p>
+			    	<strong>Payed:</strong>
+			    	$<%= pago.cuota %> <%= link_to 'Delete', prestamo_path(pago),
+              								method: :delete,
+              								data: { confirm: 'Are you sure?' } %>
+			  	</p>
+		 
+			 	 <p>
+			    	<strong>Date payed:</strong>
+			    	<%= pago.created_at %>
+			  	</p>
+			<% end %>
+
+		<% end %>
+ 
+	<h2>Add a payment:</h2>
+	<%= form_for([@prestamo, @prestamo.pagos.build]) do |f| %>
+  	<h2>
+    	<%= f.label :cuota %><br>
+    	<%= f.text_field :cuota %>
+  	</h2>
+  	<p>
+    	<%= f.submit "Submit payment", class: "btn btn-primary" %>
+  	</p>
+	<% end %>
+
+	<h2><%= link_to 'Go Back', prestamos_path %></h2>
+
+   </div>
+</div>
