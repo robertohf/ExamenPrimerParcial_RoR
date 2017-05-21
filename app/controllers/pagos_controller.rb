@@ -7,8 +7,10 @@ class PagosController < ApplicationController
   	end
  	
   def destroy
+    @prestamo = Prestamo.find(params[:prestamo_id])
 		@pago = Pago.find(params[:id])
-		@pago = @prestamo.pagos.destroy
+		@pago.destroy
+
 		redirect_to prestamo_path(@prestamo)
 	end
  	

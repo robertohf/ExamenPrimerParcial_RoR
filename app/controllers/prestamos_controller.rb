@@ -27,6 +27,10 @@ class PrestamosController < ApplicationController
     	end
   	end
 
+    def destroy
+      @destroyPago
+    end
+
   	def update
   		@prestamo = Prestamo.find(params[:id])
  

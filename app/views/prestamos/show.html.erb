@@ -42,9 +42,7 @@
 			<% @prestamo.pagos.each do |pago| %>
 			  	<p>
 			    	<strong>Payed:</strong>
-			    	$<%= pago.cuota %> <%= link_to 'Delete', prestamo_path(pago),
-              								method: :delete,
-              								data: { confirm: 'Are you sure?' } %>
+			    	$<%= pago.cuota %> <%= link_to "Delete", prestamo_pago_path(@prestamo, pago), data: {confirm: "Really delete this loan?"}, method: :delete %>
 			  	</p>
 		 
 			 	 <p>
